@@ -1,5 +1,20 @@
 {
     "name": "enomotodev/php-cs-fixer-commit",
+    "description": "Create commit of php-cs-fixer",
+    "keywords": ["circleci", "github", "gitlabci", "gitlab"],
+    "license": "MIT",
+    "type": "library",
+    "homepage": "https://enomotodev.hatenablog.com/",
+    "support": {
+        "issues": "https://github.com/enomotodev/php-cs-fixer-commit/issues",
+        "source": "https://github.com/enomotodev/php-cs-fixer-commit"
+    },
+    "authors": [
+        {
+            "name": "enomotodev",
+            "email": "enomoto.dev@gmail.com"
+        }
+    ],
     "require": {
         "friendsofphp/php-cs-fixer": "^2.15.0"
     },
