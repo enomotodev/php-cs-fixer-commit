@@ -20,14 +20,16 @@ class Command
      */
     public function run(array $argv)
     {
-        if (count($argv) !== 3) {
+        $argvCount = count($argv);
+        if ($argvCount !== 3 && $argvCount !== 4) {
             fwrite(STDERR, 'Invalid arguments.' . PHP_EOL);
             exit(1);
         }
 
         list(, $name, $email) = $argv;
+        $path = isset($argv[3]) ? $argv[3] : '';
 
-        system('./vendor/bin/php-cs-fixer fix ./');
+        system("./vendor/bin/php-cs-fixer fix {$path}");
         system('rm -f ./.php_cs.cache');
 
         if (strpos(system('git status -sb'), '.php') === false) {
