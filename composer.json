@@ -1,0 +1,14 @@
+{
+    "name": "enomotodev/php-cs-fixer-commit",
+    "require": {
+        "friendsofphp/php-cs-fixer": "^2.15.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Enomotodev\\PhpCsFixerCommit\\": "src/"
+        }
+    },
+    "bin": [
+        "php-cs-fixer-commit"
+    ]
+}
