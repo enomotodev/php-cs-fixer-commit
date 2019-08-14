@@ -30,7 +30,7 @@ class Command
         $path = isset($argv[3]) ? $argv[3] : '';
 
         system("./vendor/bin/php-cs-fixer fix {$path}");
-        system('rm -f ./.php_cs.cache');
+        system('php clean -df');
 
         if (strpos(system('git status -sb'), '.php') === false) {
             fwrite(STDOUT, 'No changes.' . PHP_EOL);
