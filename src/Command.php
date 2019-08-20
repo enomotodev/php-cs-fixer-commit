@@ -74,7 +74,6 @@ class Command
             preg_match('/https:\/\/gitlab-ci-token:(.*)@(.*)/', $repositoryUrl, $matches);
 
             system("git remote set-url origin https://gitlab-ci-token:{$token}@{$matches[2]}");
-            system("git checkout {$branch}");
             system('git add -u');
             system('git commit -m "php-cs-fixer"');
             system("git push -q origin {$branch}");
