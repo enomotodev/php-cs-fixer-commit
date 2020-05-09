@@ -57,7 +57,16 @@ class Command
      */
     private function createCommit()
     {
-        if ((bool) getenv('CIRCLECI')) {
+        if ((bool) getenv('GITHUB_ACTIONS')) {
+            $branch = substr(system('git branch'), 2);
+            $accessToken = getenv('GITHUB_TOKEN');
+            $repositoryName = getenv('GITHUB_REPOSITORY');
+
+            system("git remote set-url origin https://{$accessToken}@github.com/{$repositoryName}/");
+            system('git add -u');
+            system('git commit -m "php-cs-fixer"');
+            system("git push -q origin {$branch}");
+        } elseif ((bool) getenv('CIRCLECI')) {
             $branch = getenv('CIRCLE_BRANCH');
             $accessToken = getenv('GITHUB_ACCESS_TOKEN');
             $repositoryName = getenv('CIRCLE_PROJECT_REPONAME');

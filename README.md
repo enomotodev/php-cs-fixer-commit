@@ -6,6 +6,35 @@
 $ composer require --dev enomotodev/php-cs-fixer-commit
 ```
 
+## Usage (GitHub + GitHub Actions)
+
+### Create workflow file
+
+In `.github/workflows` , add a .yml or .yaml file for your workflow.
+
+For example, `.github/workflows/php-cs-fixer-commit.yml` .
+
+```yaml
+name: php-cs-fixer-commit
+
+on:
+  push:
+
+jobs:
+  php-cs-fixer-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: composer install
+      - name: php-cs-fixer-commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./vendor/bin/php-cs-fixer-commit <username> <email>
+```
+
+NOTE: Please make sure you replace `<username>` and `<email>` with yours.
+
 ## Usage (GitHub + CircleCI)
 
 ### Setting GitHub personal access token to CircleCI
