@@ -29,7 +29,14 @@ class Command
         list(, $name, $email) = $argv;
         $path = isset($argv[3]) ? $argv[3] : '';
 
-        system("./vendor/bin/php-cs-fixer fix {$path}");
+        if (file_exists('./vendor/bin/php-cs-fixer')) {
+            $commandPath = './vendor/bin';
+        } elseif ((bool) getenv('COMPOSER_HOME')) {
+            $commandPath = getenv('COMPOSER_HOME') . '/vendor/bin';
+        } else {
+            $commandPath = '~/.composer/vendor/bin';
+        }
+        system("{$commandPath}/php-cs-fixer fix {$path}");
         system('git clean -df');
 
         if (strpos(system('git status -sb'), '.php') === false) {
